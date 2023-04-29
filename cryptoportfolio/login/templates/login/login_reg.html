@@ -1,0 +1,15 @@
+{% extends 'login/layout.html' %}
+{% block title%} CUR {% endblock%}
+
+{% block content%}
+    <h1>Регистрация</h1>
+    <p>Введите логин и пароль:</p>
+    <form method="post">
+
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Зарегистрироваться</button>
+        <span>{{ error }}</span>
+    </form>
+
+{% endblock%}

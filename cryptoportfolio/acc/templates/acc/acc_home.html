@@ -1,0 +1,22 @@
+{% extends 'login/layout.html' %}
+{% block title%} NEWS {% endblock%}
+
+{% block content%}
+    <a href="{% url 'create' %}">Создать портфолио</a>
+    {% for port in portfolio %}
+        <div class="alert alert-warning">
+            <a href="{% url 'portfolio' pk=port.portfolio.id %}">portf name:{{ port.portfolio.name }}</a>
+            <p>portf desc:{{ port.portfolio.description }}</p>
+            <p>Цена: {{ port.statistic.price }}$</p>
+            <p>Изменение за сутки: {{ port.statistic.change_24h }}%</p>
+            <p>Изменение за неделю: {{ port.statistic.change_7d }}%</p>
+        </div>
+    {% endfor %}
+    {% for new in news %}
+        <div class="alert alert-warning">
+            <a href={{ new.href }}>{{ new.title }}</a>
+            <p>{{ new.description }}</p>
+            <a href={{ new.href }}><img src={{ new.picture }}></a>
+        </div>
+    {% endfor %}
+{% endblock%}

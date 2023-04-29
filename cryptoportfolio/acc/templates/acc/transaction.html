@@ -1,0 +1,14 @@
+{% extends 'login/layout.html' %}
+{% block title%} CUR {% endblock%}
+
+{% block content%}
+    <h1>Транзакция</h1>
+    <p>Введите данные(0-Покупка, 1-Продажа):</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Выполнить транзакцию</button>
+    </form>
+    <span>{{ error }}</span>
+
+{% endblock%}
