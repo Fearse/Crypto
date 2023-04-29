@@ -2,14 +2,41 @@
 {% block title%} CUR {% endblock%}
 
 {% block content%}
-    <h1>Регистрация</h1>
-    <p>Введите логин и пароль:</p>
-    <form method="post">
-
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Зарегистрироваться</button>
-        <span>{{ error }}</span>
-    </form>
-
+    <div class="container reg-container">
+        <h1>Регистрация</h1>
+        <p>Please sign up</p>
+        <form method="post">{% csrf_token %}
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Name</label>
+                <input type="text"
+                       name="{{ form.username.name }}"
+                       class="form-control"
+                       id="inputName"
+                       placeholder="Name"
+                       aria-describedby="nameHelp">
+                <div id="nameHelp" class="form-text">Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_.</div>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword1" class="form-label">Password</label>
+                <input type="password"
+                       name="{{ form.password1.name }}"
+                       class="form-control"
+                       id="inputPassword1"
+                       placeholder="Password"
+                       aria-describedby="passHelp">
+                <div id="passHelp" class="form-text">Ваш пароль должен содержать как минимум 1 символ.</div>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword2" class="form-label">Confirm password</label>
+                <input type="password"
+                       name="{{ form.password2.name }}"
+                       class="form-control"
+                       id="inputPassword2"
+                       placeholder="Confirm password">
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+            <span>{{ error }}</span>
+        </form>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+    </div>
 {% endblock%}

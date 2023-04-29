@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+    max-height: 100%;
+    font-family: 'Museo Slab', sans-serif;
+    background-color: #bfd7ea;
+}
+
+.login-container {
+    padding-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20em;
+    text-align: center;
+}
+
+.login-container button, a {
+    margin-top: 15px;
+}
+
+.reg-container {
+    padding-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25em;
+}
+
+.reg-container button, a {
+    margin-top: 15px;
+}
+
+.reg-container button, p, h1 {
+    text-align: center;
+}

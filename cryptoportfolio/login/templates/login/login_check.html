@@ -2,14 +2,30 @@
 {% block title%} CUR {% endblock%}
 
 {% block content%}
-    <h1>Авторизация</h1>
-    <p>Введите логин и пароль:</p>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Войти</button>
-        <span>{{ error }}</span>
-    </form>
-    <a href="{% url 'reg' %}">Зарегистрироваться</a>
-
+    <div class="container login-container">
+        <h1>Авторизация</h1>
+        <p>Please sign in</p>
+        <form method="post">{% csrf_token %}
+            <div class="form-floating">
+                <input type="text"
+                       name="{{ form.username.name }}"
+                       class="form-control"
+                       id="floatingInput"
+                       placeholder="Login">
+                <label for="floatingInput">Login</label>
+            </div>
+            <div class="form-floating">
+                <input type="password"
+                       name="{{ form.password.name }}"
+                       class="form-control"
+                       id="floatingPassword"
+                       placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <span>{{ error }}</span>
+        </form>
+        <a class="btn btn-outline-secondary btn-sm" href="{% url 'reg' %}">Sign up</a>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+    </div>
 {% endblock%}
