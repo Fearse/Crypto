@@ -8,28 +8,28 @@
             <div class="col-md-3 mb-2 mb-md-0">
                 <img src="{% static 'img/Logotip.png' %}">
             </div>
-
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="{% url 'create' %}" class="nav-link px-2">Create portfolio</a></li>
                 <li><a href="#" class="nav-link px-2">News</a></li>
             </ul>
-
             <div class="col-md-3 text-end">
                 <a href="#" class="btn btn-outline-primary me-2">Exit</a>
             </div>
         </header>
     </div>
-    {% for port in portfolio %}
-        <div class="alert alert-warning">
-            <a href="{% url 'portfolio' pk=port.portfolio.id %}">portf name:{{ port.portfolio.name }}</a>
-            <p>portf desc:{{ port.portfolio.description }}</p>
-            <p>Цена: {{ port.statistic.price }}$</p>
-            <p>Изменение за сутки: {{ port.statistic.change_24h }}%</p>
-            <p>Изменение за неделю: {{ port.statistic.change_7d }}%</p>
-        </div>
-    {% endfor %}
-    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+    <div class="container portfolios">
+        {% for port in portfolio %}
+            <div class="alert alert-warning">
+                <a href="{% url 'portfolio' pk=port.portfolio.id %}">portf name:{{ port.portfolio.name }}</a>
+                <p>portf desc:{{ port.portfolio.description }}</p>
+                <p>Цена: {{ port.statistic.price }}$</p>
+                <p>Изменение за сутки: {{ port.statistic.change_24h }}%</p>
+                <p>Изменение за неделю: {{ port.statistic.change_7d }}%</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 align-items-center justify-content-center">
         <div class="list-group">
             {% for new in news %}
                 <a href="{{ new.href }}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
