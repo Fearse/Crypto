@@ -38,3 +38,8 @@ html, body {
     float: left;
     margin: 9px 9px 9px 0;
 }
+
+.acc-container img {
+    width: 50%;
+    height: 50%;
+}

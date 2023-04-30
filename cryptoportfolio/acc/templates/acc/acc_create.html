@@ -1,19 +1,54 @@
 {% extends 'login/layout.html' %}
 {% block title%} CUR {% endblock%}
+{% load static %}
 
 {% block content%}
-    <h1>Создание портфеля</h1>
-    <p>Введите данные:</p>
-    <form method="post">
-        {% csrf_token %}
-        <p>Name</p>
-        {{ form.name }}
-        <p>Date</p>
-        {{ form.creation_date }}
-        <p>Desc</p>
-        {{ form.description }}
-        <button type="submit">Создать портфель</button>
-        <span>{{ error }}</span>
-    </form>
+    <div class="container acc-container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <img src="{% static 'img/Logotip.png' %}">
+            </div>
 
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'home' %}" class="nav-link px-2">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-secondary">Create portfolio</a></li>
+                <li><a href="#" class="nav-link px-2">News</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <a href="#" class="btn btn-outline-primary me-2">Exit</a>
+            </div>
+        </header>
+    </div>
+    <div class="container reg-container">
+        <p>Введите данные:</p>
+        <form method="post">{% csrf_token %}
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Name</label>
+                <input type="text"
+                       name="{{ form.name.name }}"
+                       class="form-control"
+                       id="inputName"
+                       placeholder="Name">
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword1" class="form-label">Date</label>
+                <input type="date"
+                       name="{{ form.creation_date.name }}"
+                       class="form-control"
+                       id="inputPassword1"
+                       placeholder="Password">
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword2" class="form-label">Desc</label>
+                <input type="text"
+                       name="{{ form.description.name }}"
+                       class="form-control"
+                       id="inputPassword2"
+                       placeholder="Desc">
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
+            <span>{{ error }}</span>
+        </form>
+    </div>
 {% endblock%}
