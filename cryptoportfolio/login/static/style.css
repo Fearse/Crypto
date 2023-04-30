@@ -6,19 +6,19 @@ html, body {
 }
 
 .login-container {
-    padding-top: 15%;
+    padding-top: 7%;
     margin-left: auto;
     margin-right: auto;
     width: 20em;
     text-align: center;
 }
 
-.login-container button, a {
+.login-container button, a, img {
     margin-top: 15px;
 }
 
 .reg-container {
-    padding-top: 10%;
+    padding-top: 7%;
     margin-left: auto;
     margin-right: auto;
     width: 25em;
@@ -30,4 +30,11 @@ html, body {
 
 .reg-container button, p, h1 {
     text-align: center;
+}
+
+.role img {
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin: 9px 9px 9px 0;
 }

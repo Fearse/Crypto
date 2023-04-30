@@ -18,7 +18,61 @@
     <link href="https://fonts.cdnfonts.com/css/museo-slab" rel="stylesheet">
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
+<div class="container footer-main">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-4 my-4 border-top">
+        <div class="col mb-3" style="width: 175px">
+            <p class="text-body-secondary">&copy; 2023</p>
+        </div>
+        <div class="col mb-3" style="width: 750px">
+            <h2>О нас</h2>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="role">
+                            <img src="{% static 'img/ceo.png' %}">Двуреченский<br>Захар<br>Владимирович<br>GitHub
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="role">
+                            <img src="{% static 'img/programmer.png' %}">Кривошеев<br>Данила<br>Игоревич<br>GitHub
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="role">
+                            <img src="{% static 'img/programmer.png' %}">Брюхачёв<br>Алексей<br>Андреевич<br>GitHub
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="role">
+                            <img src="{% static 'img/analyst.png' %}">Новиков<br>Никита<br>Сергеевич<br> GitHub
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="role">
+                            <img src="{% static 'img/techwriter.png' %}">Сенников<br>Денис<br>Игоревич<br>GitHub
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3" style="width: 175px">
+            <h5>Support</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Support</a></li>
+            </ul>
+        </div>
+        <div class="col mb-3" style="width: 175px">
+            <h5>Socials</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Twitter</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

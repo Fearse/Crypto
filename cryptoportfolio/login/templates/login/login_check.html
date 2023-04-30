@@ -1,9 +1,10 @@
 {% extends 'login/layout.html' %}
 {% block title%} CUR {% endblock%}
+{% load static %}
 
 {% block content%}
     <div class="container login-container">
-        <h1>Авторизация</h1>
+        <p><img src="{% static 'img/Logotip.png' %}"></p>
         <p>Please sign in</p>
         <form method="post">{% csrf_token %}
             <div class="form-floating">
@@ -26,6 +27,5 @@
             <span>{{ error }}</span>
         </form>
         <a class="btn btn-outline-secondary btn-sm" href="{% url 'reg' %}">Sign up</a>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
     </div>
 {% endblock%}

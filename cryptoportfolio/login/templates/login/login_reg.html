@@ -1,9 +1,10 @@
 {% extends 'login/layout.html' %}
 {% block title%} CUR {% endblock%}
+{% load static %}
 
 {% block content%}
     <div class="container reg-container">
-        <h1>Регистрация</h1>
+        <p><img src="{% static 'img/Logotip.png' %}"></p>
         <p>Please sign up</p>
         <form method="post">{% csrf_token %}
             <div class="mb-3">
@@ -37,6 +38,5 @@
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
             <span>{{ error }}</span>
         </form>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
     </div>
 {% endblock%}
