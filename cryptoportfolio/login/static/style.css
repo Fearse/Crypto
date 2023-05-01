@@ -48,5 +48,9 @@ html, body {
     float: left;
     width: 20em;
     padding-top: 2.4em;
-    padding-left: 1.4em
+    padding-left: 1.4em;
+}
+
+.portfolio {
+    display: flex;
 }

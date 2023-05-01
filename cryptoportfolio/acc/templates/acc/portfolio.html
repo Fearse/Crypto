@@ -1,47 +1,69 @@
 {% extends 'login/layout.html' %}
 {% block title%} NEWS {% endblock%}
+{% load static %}
 
-{% block content%}
-    <h1>portf name:{{ portfolio.name }}</h1>
-    <p>portf descr:{{ portfolio.description }}</p>
-    <p>portf owner:{{ portfolio.owner }}</p>
-    <table>
-          <tr>
-            <td>Общая стоимость</td>
-            <td>Изменение за сутки</td>
-            <td>Изменение за неделю</td>
-          </tr>
-        <tr>
-        <td>{{ statistic.price }}$</td>
-        <td>{{ statistic.change_24h }}%</td>
-        <td>{{ statistic.change_7d }}%</td>
-       </tr>
-    </table>
-    <a href="{% url 'transaction' pk=portfolio.id %}">Сделать транзакцию</a>
-    <table>
-      <tr>
-        <td>Имя</td>
-        <td>Количество</td>
-        <td>Ср цена покупки</td>
-        <td>Цена</td>
-        <td>Активы</td>
-        <td>Изменение за сутки</td>
-        <td>Изменение за неделю</td>
-        <td>Изменение за месяц</td>
-        <td>Выгода</td>
-      </tr>
-      {% for coin in coins %}
-      <tr>
-        <td> <img src={{ coin.image_url }}> {{ coin.name }}</td>
-        <td>{{ coin.amount }}</td>
-        <td>{{ coin.avgBuyPrice }}$</td>
-        <td>{{ coin.price }}$</td>
-        <td>{{ coin.assets }}$</td>
-        <td>{{ coin.change_24h }}%</td>
-        <td>{{ coin.change_7d }}%</td>
-        <td>{{ coin.change_30d }}%</td>
-        <td>{{ coin.profit }}$</td>
-       </tr>
-      {% endfor %}
-    </table>
-{% endblock%}
+{% block content %}
+    <div class="container acc-container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <img src="{% static 'img/Logotip.png' %}">
+            </div>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'home' %}" class="nav-link px-2">Home</a></li>
+                <li><a href="{% url 'create' %}" class="nav-link px-2">Create portfolio</a></li>
+                <li><a href="#" class="nav-link px-2">News</a></li>
+            </ul>
+            <div class="col-md-3 text-end">
+                <a href="#" class="btn btn-outline-primary me-2">Exit</a>
+            </div>
+        </header>
+    </div>
+    <div class="portfolio" style="display: flex">
+        <div class="container portfolios">
+            <div class="alert alert-warning">
+                <p>portf name:{{ portfolio.name }}</p>
+                <p>portf desc:{{ portfolio.description }}</p>
+                <p>portf owner:{{ portfolio.owner }}</p>
+                <p>Общая стоимость: {{ statistic.price }}$</p>
+                <p>Изменение за сутки: {{ statistic.change_24h }}%</p>
+                <p>Изменение за неделю: {{ statistic.change_7d }}%</p>
+            </div>
+            <a href="{% url 'transaction' pk=portfolio.id %}" class="w-100 btn btn-lg btn-primary">Make a
+                transaction</a>
+            <a href="{% url 'create' %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Create</a>
+        </div>
+
+        <div class="container" style="padding-top: 2.4em;">
+            <table class="table table-info">
+                <thead>
+                <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Ср цена покупки</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Активы</th>
+                    <th scope="col">Изменение за сутки</th>
+                    <th scope="col">Изменение за неделю</th>
+                    <th scope="col">Изменение за месяц</th>
+                    <th scope="col">Выгода</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for coin in coins %}
+                    <tr>
+                        <th scope="row"><img src={{ coin.image_url }}>{{ coin.name }}</th>
+                        <td>{{ coin.amount }}</td>
+                        <td>{{ coin.avgBuyPrice }}$</td>
+                        <td>{{ coin.price }}$</td>
+                        <td>{{ coin.assets }}$</td>
+                        <td>{{ coin.change_24h }}%</td>
+                        <td>{{ coin.change_7d }}%</td>
+                        <td>{{ coin.change_30d }}%</td>
+                        <td>{{ coin.profit }}$</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -28,6 +28,7 @@
                 <p>Изменение за неделю: {{ port.statistic.change_7d }}%</p>
             </div>
         {% endfor %}
+        <a href="{% url 'create' %}" class="w-100 btn btn-lg btn-primary" type="submit">Create</a>
     </div>
     <div class="d-flex flex-column flex-md-row p-4 gap-4 align-items-center justify-content-center">
         <div class="list-group">
