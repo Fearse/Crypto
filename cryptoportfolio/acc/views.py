@@ -203,7 +203,7 @@ def get_coin_list(pk):
                     {
                         "name": i.name,
                         "price": price,
-                        "assets": i.amount * price,
+                        "assets": round(i.amount * price, 2),
                         "change_24h": change_24h,
                         "change_7d": change_7d,
                         "change_30d": change_30d,

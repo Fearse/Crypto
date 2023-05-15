@@ -21,12 +21,12 @@
     <div class="portfolio" style="display: flex">
         <div class="container portfolios">
             <div class="alert alert-warning">
-                <p>portf name:{{ portfolio.name }}</p>
-                <p>portf desc:{{ portfolio.description }}</p>
-                <p>portf owner:{{ portfolio.owner }}</p>
-                <p>Общая стоимость: {{ statistic.price }}$</p>
-                <p>Изменение за сутки: {{ statistic.change_24h }}%</p>
-                <p>Изменение за неделю: {{ statistic.change_7d }}%</p>
+                <p>Name: {{ portfolio.name }}</p>
+                <p>Description: {{ portfolio.description }}</p>
+                <p>Owner: {{ portfolio.owner }}</p>
+                <p>Total cost: {{ statistic.price }}$</p>
+                <p>Total 24h %: {{ statistic.change_24h }}%</p>
+                <p>Total 7d %: {{ statistic.change_7d }}%</p>
             </div>
             <a href="{% url 'transaction' pk=portfolio.id %}" class="w-100 btn btn-lg btn-primary">Make a
                 transaction</a>
@@ -34,36 +34,52 @@
         </div>
 
         <div class="container" style="padding-top: 2.4em;">
-            <table class="table table-info">
+            <table class="table table-info" style="vertical-align: middle; text-align: right">
                 <thead>
                 <tr>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Количество</th>
-                    <th scope="col">Ср цена покупки</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Активы</th>
-                    <th scope="col">Изменение за сутки</th>
-                    <th scope="col">Изменение за неделю</th>
-                    <th scope="col">Изменение за месяц</th>
-                    <th scope="col">Выгода</th>
+                    <th scope="col" style="text-align: center">Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Avg Buy Price</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Assets</th>
+                    <th scope="col">24h %</th>
+                    <th scope="col">7d %</th>
+                    <th scope="col">30d %</th>
+                    <th scope="col" style="text-align: center">Profit</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for coin in coins %}
                     <tr>
-                        <th scope="row"><img src={{ coin.image_url }}>{{ coin.name }}</th>
+                        <th scope="row" style="text-align: left">
+                            <img src={{ coin.image_url }} width="25" height="25"
+                                 style="margin-top: 0px; margin-right: 15px;">
+                            {{ coin.name }}
+                        </th>
                         <td>{{ coin.amount }}</td>
                         <td>{{ coin.avgBuyPrice }}$</td>
                         <td>{{ coin.price }}$</td>
                         <td>{{ coin.assets }}$</td>
-                        <td>{{ coin.change_24h }}%</td>
-                        <td>{{ coin.change_7d }}%</td>
-                        <td>{{ coin.change_30d }}%</td>
-                        <td>{{ coin.profit }}$</td>
+                        <td id="check">{{ coin.change_24h }}%</td>
+                        <td id="check">{{ coin.change_7d }}%</td>
+                        <td id="check">{{ coin.change_30d }}%</td>
+                        <td id="check" style="text-align: center">{{ coin.profit }}$</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+    <script>
+        [...document.querySelectorAll('td')].filter(e => e.id === "check").forEach((s, i) => {
+            const value = parseFloat(s.innerHTML.replace(',', '.'));
+            if (value > 0) {
+                s.style.color = 'green';
+            } else if (value < 0) {
+                s.style.color = 'red';
+            } else {
+                s.style.color = 'black';
+            }
+        })
+    </script>
 {% endblock %}
