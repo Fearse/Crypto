@@ -34,8 +34,8 @@
         </div>
 
         <div class="container" style="padding-top: 2.4em;">
-            <table class="table table-info" style="vertical-align: middle; text-align: right">
-                <thead>
+            <table class="table table-light table-striped table-hover" style="vertical-align: middle; text-align: right">
+                <thead class="table-secondary">
                 <tr>
                     <th scope="col" style="text-align: center">Name</th>
                     <th scope="col">Amount</th>
@@ -49,6 +49,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tbody class="table-group-divider">
                 {% for coin in coins %}
                     <tr>
                         <th scope="row" style="text-align: left">
