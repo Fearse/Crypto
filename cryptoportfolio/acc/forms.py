@@ -6,9 +6,9 @@ from .models import Portfolio, Transaction
 class PortfolioForm(ModelForm):
     class Meta:
         model = Portfolio
-        fields = ['name','creation_date','description']
+        fields = ['name','description']
 
 class TransactionForm(ModelForm):
     class Meta:
         model = Transaction
-        fields = ['name','price','amount','transType','date']
+        fields = ['name','price','amount','transType']

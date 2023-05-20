@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from django.contrib.auth import views as authViews
 
 urlpatterns = [
     path('',views.acc_home,name='home'),
     path('create',views.acc_create,name='create'),
     path('<int:pk>',views.portfolio,name='portfolio'),
-    path('<int:pk>/transaction',views.transaction,name='transaction')
+    path('<int:pk>/transaction',views.transaction,name='transaction'),
+    path('exit/', authViews.LogoutView.as_view(next_page='/login/check'), name='exit'),
 ]

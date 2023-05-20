@@ -14,9 +14,11 @@
                 <li><a href="#" class="nav-link px-2 link-secondary">Create portfolio</a></li>
                 <li><a href="#" class="nav-link px-2">News</a></li>
             </ul>
-
             <div class="col-md-3 text-end">
-                <a href="#" class="btn btn-outline-primary me-2">Exit</a>
+                <a>{{ request.user }}</a>
+            </div>
+            <div class="col-md-3 text-end">
+                <a href="exit" class="btn btn-outline-primary me-2">Exit</a>
             </div>
         </header>
     </div>
@@ -30,14 +32,6 @@
                        class="form-control"
                        id="inputName"
                        placeholder="Name">
-            </div>
-            <div class="mb-3">
-                <label for="inputPassword1" class="form-label">Date</label>
-                <input type="date"
-                       name="{{ form.creation_date.name }}"
-                       class="form-control"
-                       id="inputPassword1"
-                       placeholder="Password">
             </div>
             <div class="mb-3">
                 <label for="inputPassword2" class="form-label">Desc</label>

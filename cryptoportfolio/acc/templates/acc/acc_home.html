@@ -14,7 +14,10 @@
                 <li><a href="#" class="nav-link px-2">News</a></li>
             </ul>
             <div class="col-md-3 text-end">
-                <a href="#" class="btn btn-outline-primary me-2">Exit</a>
+                <a>{{ request.user }}</a>
+            </div>
+            <div class="col-md-3 text-end">
+                <a href="exit" class="btn btn-outline-primary me-2">Exit</a>
             </div>
         </header>
     </div>
@@ -43,7 +46,7 @@
                             <h5 class="mb-0">{{ new.title }}</h5>
                             <p class="mb-0 opacity-75">{{ new.description }}</p>
                         </div>
-                        <small class="opacity-50 text-nowrap">1w</small>
+                        <small class="opacity-50 text-nowrap">{{ new.time }}</small>
                     </div>
                 </a>
             {% endfor %}

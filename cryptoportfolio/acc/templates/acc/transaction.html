@@ -14,7 +14,10 @@
                 <li><a href="#" class="nav-link px-2">News</a></li>
             </ul>
             <div class="col-md-3 text-end">
-                <a href="#" class="btn btn-outline-primary me-2">Exit</a>
+                <a>{{ request.user }}</a>
+            </div>
+            <div class="col-md-3 text-end">
+                <a href="exit" class="btn btn-outline-primary me-2">Exit</a>
             </div>
         </header>
     </div>
@@ -23,11 +26,16 @@
         <form method="post">{% csrf_token %}
             <div class="mb-3">
                 <label for="inputName" class="form-label">Name</label>
-                <input type="text"
+                <select
                        name="{{ form.name.name }}"
                        class="form-control"
-                       id="inputName"
-                       placeholder="Name">
+                       id="inputName">
+                    {% for coin in coins %}
+                    <option value="{{ coin.symbol }}">
+                        {{ coin.symbol }}
+                    </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="inputPrice" class="form-label">Price</label>
@@ -49,20 +57,12 @@
             </div>
             <div class="mb-3">
                 <label for="inputTransType" class="form-label">TransType</label>
-                <input type="number"
+                <select
                        name="{{ form.transType.name }}"
                        class="form-control"
-                       id="inputTransType"
-                       placeholder="0"
-                       aria-describedby="typeHelp">
-                <div id="typeHelp" class="form-text">(0-Покупка, 1-Продажа)</div>
-            </div>
-            <div class="mb-3">
-                <label for="inputDate" class="form-label">Date</label>
-                <input type="date"
-                       name="{{ form.date.name }}"
-                       class="form-control"
-                       id="inputDate">
+                       id="inputTransType">
+                    <option value=0>Покупка</option>
+                    <option value=1>Продажа</option></select>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Execute</button>
             <span>{{ error }}</span>

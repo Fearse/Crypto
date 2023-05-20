@@ -7,7 +7,6 @@ from django.db import models
 class Portfolio(models.Model):
     owner = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
-    creation_date = models.DateField()
     description = models.CharField(max_length=300)
 
     def __str__(self):
@@ -25,4 +24,3 @@ class Transaction(models.Model):
     price = models.FloatField()
     amount = models.FloatField()
     transType = models.IntegerField()  # 0-Покупка, 1-Продажа, нужно как-нибудь заменить
-    date = models.DateField()

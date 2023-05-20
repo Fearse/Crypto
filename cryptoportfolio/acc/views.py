@@ -62,6 +62,7 @@ def transaction(request, pk):
     portfolio_ = Portfolio.objects.filter(id=pk)
     portfolio = portfolio_[0]
     error = ''
+    coins=getPricesApi()
     if (portfolio.owner != request.user.username):
         return render(request, 'acc/error.html')
     cryptocoins = Cryptocoin.objects.filter(idPortfolio=pk)
@@ -100,9 +101,8 @@ def transaction(request, pk):
     else:
         form = TransactionForm()
     form = TransactionForm
-    context = {'form': form, 'error': error}
+    context = {'form': form, 'error': error,'coins':coins}
     return render(request, 'acc/transaction.html', context)
-
 
 def getPricesApi():
     url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
@@ -150,7 +150,8 @@ def get_news():
         if (image != None):
             image = image.get('src')
         # print('image', image)
-        results.append({'title': title, 'href': href, 'description': desc, 'picture': image})
+        time = item.find('div', class_='entry-meta-item entry-meta__time').find('time').get_text()
+        results.append({'title': title, 'href': href, 'description': desc, 'picture': image, 'time':time})
     return results
 
 
