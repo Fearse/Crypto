@@ -16,6 +16,26 @@
 
     <!--Fonts-->
     <link href="https://fonts.cdnfonts.com/css/museo-slab" rel="stylesheet">
+    <style>
+        th.sorted[data-order="1"],
+        th.sorted[data-order="-1"] {
+            position: relative;
+        }
+
+        th.sorted[data-order="1"]::after,
+        th.sorted[data-order="-1"]::after {
+            right: 8px;
+            position: absolute;
+        }
+
+        th.sorted[data-order="-1"]::after {
+            content: "▼"
+        }
+
+        th.sorted[data-order="1"]::after {
+            content: "▲"
+        }
+    </style>
 </head>
 <body>
 {% block content %}

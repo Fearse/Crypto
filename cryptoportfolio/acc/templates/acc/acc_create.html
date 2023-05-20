@@ -15,9 +15,7 @@
                 <li><a href="#" class="nav-link px-2">News</a></li>
             </ul>
             <div class="col-md-3 text-end">
-                <a>{{ request.user }}</a>
-            </div>
-            <div class="col-md-3 text-end">
+                <a class="btn btn-secondary me-3">{{ request.user }}</a>
                 <a href="exit" class="btn btn-outline-primary me-2">Exit</a>
             </div>
         </header>
@@ -34,7 +32,7 @@
                        placeholder="Name">
             </div>
             <div class="mb-3">
-                <label for="inputPassword2" class="form-label">Desc</label>
+                <label for="inputPassword2" class="form-label">Description</label>
                 <input type="text"
                        name="{{ form.description.name }}"
                        class="form-control"
