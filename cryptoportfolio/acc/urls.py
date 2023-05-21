@@ -21,6 +21,7 @@ from django.contrib.auth import views as authViews
 urlpatterns = [
     path('',views.acc_home,name='home'),
     path('create',views.acc_create,name='create'),
+    path('support', views.support, name='support'),
     path('<int:pk>',views.portfolio,name='portfolio'),
     path('<int:pk>/transaction',views.transaction,name='transaction'),
     path('<int:pk>/change',views.change,name='change'),

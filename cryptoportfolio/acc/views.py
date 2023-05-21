@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import PortfolioForm, TransactionForm
+from .forms import PortfolioForm, TransactionForm, AppealForm
 from .models import Portfolio, Cryptocoin
 from django.views.generic import DetailView,UpdateView
 from requests import Request, Session
@@ -71,6 +71,21 @@ def acc_create(request):
     context = {'form': form}
     return render(request, 'acc/acc_create.html', context)
 
+
+def support(request):
+    user = request.user.username
+    if request.method == 'POST':
+        form = AppealForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.status = 'Open'
+            post.save()
+            return HttpResponseRedirect('/acc')
+    else:
+        form = AppealForm()
+    form = AppealForm()
+    context = {'form': form}
+    return render(request, 'acc/support.html', context)
 
 class PortfDetailView(DetailView):
     model = Portfolio

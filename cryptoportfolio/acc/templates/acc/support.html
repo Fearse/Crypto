@@ -21,23 +21,23 @@
         </header>
     </div>
     <div class="container reg-container">
-        <p>Введите данные:</p>
+        <p>Введите ваш email и текст обращения. После обработки заявки сотрудником вам будет прислан ответ.</p>
         <form method="post">{% csrf_token %}
             <div class="mb-3">
-                <label for="inputName" class="form-label">Name</label>
+                <label for="inputName" class="form-label">Введите email, на который мы пришлём ответ:</label>
                 <input type="text"
-                       name="{{ form.name.name }}"
+                       name="{{ form.email.name }}"
                        class="form-control"
                        id="inputName"
-                       placeholder="Name">
+                       placeholder="email">
             </div>
             <div class="mb-3">
-                <label for="inputPassword2" class="form-label">Description</label>
+                <label for="inputPassword2" class="form-label">Ваша проблема:</label>
                 <input type="text"
-                       name="{{ form.description.name }}"
+                       name="{{ form.text.name }}"
                        class="form-control"
                        id="inputPassword2"
-                       placeholder="Desc">
+                       placeholder="Текст">
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
             <span>{{ error }}</span>

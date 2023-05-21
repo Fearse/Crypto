@@ -24,3 +24,8 @@ class Transaction(models.Model):
     price = models.FloatField()
     amount = models.FloatField()
     transType = models.IntegerField()  # 0-Покупка, 1-Продажа, нужно как-нибудь заменить
+
+class Appeal(models.Model):
+    email = models.CharField(max_length=300)
+    text = models.CharField(max_length=3000)
+    status = models.CharField(max_length=30)
