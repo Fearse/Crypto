@@ -2,13 +2,42 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import PortfolioForm, TransactionForm
 from .models import Portfolio, Cryptocoin
-from django.views.generic import DetailView
+from django.views.generic import DetailView,UpdateView
 from requests import Request, Session
 import json
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 
+def change(request,pk):
+    #accouts.objects.filter(id=3).delete()
+    portfolio = Portfolio.objects.filter(id=pk)
+    if (portfolio[0].owner != request.user.username):
+        return render(request, 'acc/error.html')
+    if request.method == 'POST':
+        form = PortfolioForm(request.POST)
+        name = request.POST['name']
+        description = request.POST['description']
+        Portfolio.objects.filter(id=pk).update(name=name)
+        Portfolio.objects.filter(id=pk).update(description=description)
+        if form.is_valid():
+            return HttpResponseRedirect(f'/acc/{pk}')
+    else:
+        form = PortfolioForm()
+    form = PortfolioForm()
+    context = {'form': form,'portfolio':portfolio[0]}
+    return render(request, 'acc/change.html', context)
 
+def delete(request,pk):
+    # accouts.objects.filter(id=3).delete()
+    portfolio = Portfolio.objects.filter(id=pk)
+    if (portfolio[0].owner != request.user.username):
+        return render(request, 'acc/error.html')
+    if request.method == 'POST':
+        Portfolio.objects.filter(id=pk).delete()
+        return HttpResponseRedirect(f'/acc/')
+    form = PortfolioForm()
+    context = {'form': form, 'portfolio': portfolio[0]}
+    return render(request, 'acc/delete.html', context)
 def acc_home(request):
     user = request.user.username
     news = get_news()
@@ -51,6 +80,8 @@ class PortfDetailView(DetailView):
 
 def portfolio(request, pk):
     portfolio_ = Portfolio.objects.filter(id=pk)
+    if (portfolio_[0].owner != request.user.username):
+        return render(request, 'acc/error.html')
     coins = get_coin_list(pk)
     statistic = get_portf_statistic(coins)
     data = data_for_diagramm(statistic[0]['price'], coins)
@@ -60,9 +91,9 @@ def portfolio(request, pk):
 
 def transaction(request, pk):
     portfolio_ = Portfolio.objects.filter(id=pk)
-    portfolio = portfolio_[0]
     error = ''
     coins=getPricesApi()
+    portfolio = portfolio_[0]
     if (portfolio.owner != request.user.username):
         return render(request, 'acc/error.html')
     cryptocoins = Cryptocoin.objects.filter(idPortfolio=pk)

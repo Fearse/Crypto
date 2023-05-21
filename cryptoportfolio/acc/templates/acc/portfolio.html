@@ -32,6 +32,8 @@
             <a href="{% url 'transaction' pk=portfolio.id %}" class="w-100 btn btn-lg btn-primary">Make a
                 transaction</a>
             <a href="{% url 'create' %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Create portfolio</a>
+            <a href="{% url 'change' pk=portfolio.id %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Change portfolio</a>
+            <a href="{% url 'delete' pk=portfolio.id %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Delete portfolio</a>
         </div>
 
         <div class="container" style="padding-top: 2.4em;">

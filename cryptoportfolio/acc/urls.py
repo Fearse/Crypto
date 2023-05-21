@@ -23,5 +23,7 @@ urlpatterns = [
     path('create',views.acc_create,name='create'),
     path('<int:pk>',views.portfolio,name='portfolio'),
     path('<int:pk>/transaction',views.transaction,name='transaction'),
+    path('<int:pk>/change',views.change,name='change'),
+    path('<int:pk>/delete',views.delete,name='delete'),
     path('exit/', authViews.LogoutView.as_view(next_page='/login/check'), name='exit'),
 ]
