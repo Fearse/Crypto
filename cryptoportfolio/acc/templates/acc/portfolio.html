@@ -100,6 +100,27 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <script src="https://www.google.com/jsapi"></script>
+            <script>
+               google.load("visualization", "1", {packages:["corechart"]});
+               google.setOnLoadCallback(drawChart);
+               function drawChart() {
+               var data = google.visualization.arrayToDataTable([
+                ['Монета','Доля'],
+                {% for row in diagram %}
+                ['{{ row.name }}', {{ row.share }}],
+                {% endfor %}
+                ]);
+                var options = {
+                 title: 'Распределение портфеля',
+                 is3D: false,
+                 pieResidueSliceLabel: 'Остальное'
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('diagr'));
+                 chart.draw(data, options);
+               }
+              </script>
+            <div id="diagr"></div>
         </div>
     </div>
     <script>

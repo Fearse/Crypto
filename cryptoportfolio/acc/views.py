@@ -101,7 +101,7 @@ def portfolio(request, pk):
     statistic = get_portf_statistic(coins)
     data = data_for_diagramm(statistic[0]['price'], coins)
     return render(request, 'acc/portfolio.html',
-                  {'portfolio': portfolio_[0], 'coins': coins, 'statistic': statistic[0]})
+                  {'portfolio': portfolio_[0], 'coins': coins, 'statistic': statistic[0],'diagram':data})
 
 
 def transaction(request, pk):
@@ -268,6 +268,6 @@ def data_for_diagramm(total, coins):
     for i in coins:
         data.append({
             'name': i['name'],
-            'share': i['assets'] / total
+            'share': str(((i['assets'] / total)*100)).replace(',', '.')
         })
     return data
