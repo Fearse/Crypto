@@ -23,3 +23,5 @@ urlpatterns = [
     path('acc/', include('acc.urls')),
 
 ]
+handler404 = "acc.views.handler404"
+handler500 = 'acc.views.handler500'

@@ -284,3 +284,7 @@ def data_for_diagramm(total, coins):
             'share': str(((i['assets'] / total)*100)).replace(',', '.')
         })
     return data
+def handler404(request, exception):
+    return render(request, 'acc/unavailable.html', status=404)
+def handler500(request):
+    return render(request, 'acc/unavailable.html', status=404)
