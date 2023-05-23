@@ -9,6 +9,8 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 
 def change(request,pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(f'/login/check')
     #accouts.objects.filter(id=3).delete()
     portfolio = Portfolio.objects.filter(id=pk)
     if (portfolio[0].owner != request.user.username):
@@ -28,6 +30,8 @@ def change(request,pk):
     return render(request, 'acc/change.html', context)
 
 def delete(request,pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(f'/login/check')
     # accouts.objects.filter(id=3).delete()
     portfolio = Portfolio.objects.filter(id=pk)
     if (portfolio[0].owner != request.user.username):
@@ -38,7 +42,10 @@ def delete(request,pk):
     form = PortfolioForm()
     context = {'form': form, 'portfolio': portfolio[0]}
     return render(request, 'acc/delete.html', context)
+
 def acc_home(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(f'/login/check')
     user = request.user.username
     news = get_news()
     portfolio = Portfolio.objects.filter(owner=user)
@@ -57,6 +64,8 @@ def acc_home(request):
 
 
 def acc_create(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(f'/login/check')
     user = request.user.username
     if request.method == 'POST':
         form = PortfolioForm(request.POST)
@@ -94,6 +103,8 @@ class PortfDetailView(DetailView):
 
 
 def portfolio(request, pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(f'/login/check')
     portfolio_ = Portfolio.objects.filter(id=pk)
     if (portfolio_[0].owner != request.user.username):
         return render(request, 'acc/error.html')
@@ -105,6 +116,8 @@ def portfolio(request, pk):
 
 
 def transaction(request, pk):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(f'/login/check')
     portfolio_ = Portfolio.objects.filter(id=pk)
     error = ''
     coins=getPricesApi()
