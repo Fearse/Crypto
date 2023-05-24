@@ -21,22 +21,28 @@
     </div>
     <div class="portfolio" style="display: flex">
         <div class="container portfolios">
-            <div class="alert alert-warning">
+            <div class="container" style="background-color: #fff3cd; border-radius: 5px">
                 <p>Name: {{ portfolio.name }}</p>
                 <p>Description: {{ portfolio.description }}</p>
                 <p>Owner: {{ portfolio.owner }}</p>
                 <p>Total cost: {{ statistic.price }}$</p>
                 <p>Total 24h %: {{ statistic.change_24h }}%</p>
                 <p>Total 7d %: {{ statistic.change_7d }}%</p>
+                <div class="container">
+                    <p><a href="{% url 'transaction' pk=portfolio.id %}" class="btn btn-warning" title="Make a transaction">
+                    <i class="bi bi-coin"></i></a>
+                <a href="{% url 'create' %}" class="btn btn-success" type="submit" title="Create">
+                    <i class="bi bi-plus-circle"></i></a>
+                <a href="{% url 'change' pk=portfolio.id %}" type="submit" class="btn btn-light" title="Edit">
+                    <i class="bi bi-pencil-square"></i></a>
+                <a href="{% url 'delete' pk=portfolio.id %}" type="submit" class="btn btn-danger" title="Delete">
+                    <i class="bi bi-trash3-fill"></i></a>
+                </div>
+                <div id="diagr" style="width: 250px; height: 300px;"></div>
             </div>
-            <a href="{% url 'transaction' pk=portfolio.id %}" class="w-100 btn btn-lg btn-primary">Make a
-                transaction</a>
-            <a href="{% url 'create' %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Create portfolio</a>
-            <a href="{% url 'change' pk=portfolio.id %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Change portfolio</a>
-            <a href="{% url 'delete' pk=portfolio.id %}" class="w-100 btn btn-lg btn-outline-secondary" type="submit">Delete portfolio</a>
         </div>
 
-        <div class="container" style="padding-top: 2.4em;">
+        <div class="container" style="padding-top: 2.4em">
             <table class="table table-light table-striped table-hover" style="vertical-align: middle; text-align: right">
                 <thead class="table-secondary" style="cursor: pointer">
                 <tr style="text-align: center">
@@ -102,25 +108,35 @@
             </table>
             <script src="https://www.google.com/jsapi"></script>
             <script>
-               google.load("visualization", "1", {packages:["corechart"]});
-               google.setOnLoadCallback(drawChart);
-               function drawChart() {
-               var data = google.visualization.arrayToDataTable([
-                ['Монета','Доля'],
-                {% for row in diagram %}
-                ['{{ row.name }}', {{ row.share }}],
-                {% endfor %}
-                ]);
-                var options = {
-                 title: 'Распределение портфеля',
-                 is3D: false,
-                 pieResidueSliceLabel: 'Остальное'
-                };
-                var chart = new google.visualization.PieChart(document.getElementById('diagr'));
-                 chart.draw(data, options);
-               }
-              </script>
-            <div id="diagr"></div>
+                google.load("visualization", "1", {packages: ["corechart"]});
+                google.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Монета', 'Доля'],
+                        {% for row in diagram %}
+                            ['{{ row.name }}', {{ row.share }}],
+                        {% endfor %}
+                    ]);
+                    var options = {
+                        backgroundColor: '#fff3cd',
+                        chartArea: {
+                            top: 15
+                        },
+                        pieHole: 0.4,
+                        pieResidueSliceLabel: 'Others',
+                        legend: {
+                            alignment: 'center',
+                            position: 'bottom',
+                            textStyle: {
+                                color: 'blue',
+                                fontSize: 14
+                            }
+                        }
+                    };
+                    var chart = new google.visualization.PieChart(document.getElementById('diagr'));
+                    chart.draw(data, options);
+                }
+            </script>
         </div>
     </div>
     <script>

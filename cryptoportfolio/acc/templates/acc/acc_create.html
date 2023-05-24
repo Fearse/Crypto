@@ -37,7 +37,9 @@
                        name="{{ form.description.name }}"
                        class="form-control"
                        id="inputPassword2"
-                       placeholder="Desc">
+                       placeholder="Description"
+                       aria-describedby="descHelp">
+                <div id="descHelp" class="form-text">Не более 300 символов</div>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
             <span>{{ error }}</span>
