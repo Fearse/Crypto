@@ -30,3 +30,8 @@
 - Запустить сервер:  
  python manage.py runserver
 - После запуска сервера можно открыть приложение в браузере по адресу http://localhost:8000/login/check.
+
+# Запуск приложения с помощью Docker
+- docker-compose build
+- docker-compose run web python manage.py migrate
+- docker-compose up
